@@ -5,9 +5,10 @@ exports.fetchAllTransaction = ({
   order = "desc",
 }) => {
   return connection
-    .select("*")
+    .select("currency.*")
     .from("currency")
     .orderBy(sort_by, order)
+    .returning("*")
     .then((transactions) => {
       return transactions;
     });
