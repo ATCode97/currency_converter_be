@@ -1,0 +1,32 @@
+{
+  "GET /api": {
+    "description": "serves up a json representation of all the available endpoints of the api"
+  },
+  "GET /api/currencyhistory": {
+    "description": "serves an array of all topics",
+    "queries": ["sort_by", "order"],
+    "exampleResponse": {
+      "articles": [
+        {
+          "transaction_id": 3,
+          "GBP": 100,
+          "foreign_currency": "EUR",
+          "amount": 110.9,
+          "exchanged_at": "2010-11-17T12:21:54.171Z"
+        }
+      ]
+    }
+  },
+  "POST /api/currencyhistory": {
+    "description": "serves an array of all topics",
+    "examplePost": {
+      "articles": [
+        {
+          "GBP": 100,
+          "foreign_currency": "EUR",
+          "amount": 110.9
+        }
+      ]
+    }
+  }
+}

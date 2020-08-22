@@ -17,6 +17,20 @@ describe("/api", () => {
         expect(msg).to.equal("invalid pathway");
       });
   });
+  describe("invalids methods", () => {
+    it("status 405: methods not allowed", () => {
+      const invalidMethods = ["delete", "put", "post", "patch"];
+      const promiseArray = invalidMethods.map((method) => {
+        return request(app)
+          [method]("/api")
+          .expect(405)
+          .then(({ body: { msg } }) => {
+            expect(msg).to.equal("method not allowed");
+          });
+      });
+      return Promise.all(promiseArray);
+    });
+  });
   describe("/currencyhistory", () => {
     describe("GET methods", () => {
       it("status 200", () => {
@@ -24,7 +38,6 @@ describe("/api", () => {
           .get("/api/currencyhistory")
           .expect(200)
           .then(({ body: { transaction } }) => {
-            console.log(transaction);
             expect(transaction[0]).to.be.an("object");
             expect(transaction).to.have.length(5);
           });
@@ -34,7 +47,6 @@ describe("/api", () => {
           .get("/api/currencyhistory?sort_by=exchanged_at")
           .expect(200)
           .then(({ body: { transaction } }) => {
-            console.log(transaction);
             expect(transaction).to.be.descendingBy("exchanged_at");
           });
       });
@@ -43,7 +55,6 @@ describe("/api", () => {
           .get("/api/currencyhistory?order=asc")
           .expect(200)
           .then(({ body: { transaction } }) => {
-            console.log(transaction);
             expect(transaction).to.be.ascendingBy("exchanged_at");
           });
       });
