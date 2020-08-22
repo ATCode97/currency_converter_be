@@ -19,7 +19,7 @@ describe("/api", () => {
   });
   describe("invalids methods", () => {
     it("status 405: methods not allowed", () => {
-      const invalidMethods = ["delete", "put", "post", "patch"];
+      const invalidMethods = ["delete", "put", "patch"];
       const promiseArray = invalidMethods.map((method) => {
         return request(app)
           [method]("/api")
