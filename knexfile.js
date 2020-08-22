@@ -1,7 +1,6 @@
 const { DATABASE_URL } = process.env;
 
-const ENV = (process.env.NODE_ENV["NODE_TLS_REJECT_UNAUTHORIZED"] =
-  0 || "development");
+const ENV = (process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0" || "development");
 
 console.log(`Currently running in ${ENV} environment`);
 
