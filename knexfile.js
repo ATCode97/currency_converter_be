@@ -30,6 +30,7 @@ const customConfig = {
   },
   production: {
     connection: `${DATABASE_URL}?ssl=true`,
+    rejectUnauthorized: false,
   },
 };
 
