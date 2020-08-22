@@ -1,8 +1,17 @@
 exports.handle400s = (err, req, res, next) => {
   const { code } = err;
-  const errors400 = ["42703"];
+  const errors400 = ["42703", "23502"];
 
   if (errors400.includes(code)) res.status(400).send({ msg: "bad request" });
+  else next(err);
+};
+
+exports.handle422s = (err, req, res, next) => {
+  const { code } = err;
+  const errors400 = ["22P02"];
+
+  if (errors400.includes(code))
+    res.status(422).send({ msg: "unprocessable entity" });
   else next(err);
 };
 

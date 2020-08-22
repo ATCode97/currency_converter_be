@@ -18,7 +18,7 @@ describe("/api", () => {
       });
   });
   describe("/currencyhistory", () => {
-    xdescribe("GET methods", () => {
+    describe("GET methods", () => {
       it("status 200", () => {
         return request(app)
           .get("/api/currencyhistory")
@@ -57,7 +57,7 @@ describe("/api", () => {
       });
     });
     describe("POST method", () => {
-      xit("status 201", () => {
+      it("status 201", () => {
         return request(app)
           .post("/api/currencyhistory")
           .expect(201)
@@ -73,12 +73,32 @@ describe("/api", () => {
             expect(transaction).to.contain.keys("exchanged_at");
           });
       });
-      it("status 400: the send body is missing a GBP keys", () => {});
-      it("status 400: the send body is missing a foreign_currency key", () => {});
-      it("status 400: the send body is missing a amount key", () => {});
-      it("status 422: posting with an invalid datatype", () => {});
+      it("status 400: the send body is missing a foreign_currency key", () => {
+        return request(app)
+          .post("/api/currencyhistory")
+          .send({
+            GBP: 200,
+            amount: 237.12,
+          })
+          .expect(400)
+          .then(({ body: { msg } }) => {
+            expect(msg).to.equal("bad request");
+          });
+      });
+      it("status 422: posting with an invalid datatype", () => {
+        return request(app)
+          .post("/api/currencyhistory")
+          .expect(422)
+          .send({
+            GBP: "two hundred",
+            amount: 237.12,
+          })
+          .then(({ body: { msg } }) => {
+            expect(msg).to.equal("unprocessable entity");
+          });
+      });
     });
-    xdescribe("invalids methods", () => {
+    describe("invalids methods", () => {
       it("status 405: methods not allowed", () => {
         const invalidMethods = ["delete", "put", "patch"];
         const promiseArray = invalidMethods.map((method) => {
