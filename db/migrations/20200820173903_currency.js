@@ -1,5 +1,5 @@
 exports.up = function (knex) {
-  return knex.schema.createTable("currency", (currencyTable) => {
+  return knex.schema.createTable("tblCurrency", (currencyTable) => {
     currencyTable.increments("transaction_id").primary();
     currencyTable.float("GBP").defaultTo(0);
     currencyTable.string("foreign_currency").notNullable();
@@ -9,5 +9,5 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-  return knex.schema.dropTable("currency");
+  return knex.schema.dropTable("tblCurrency");
 };

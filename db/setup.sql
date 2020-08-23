@@ -1,5 +1,10 @@
-DROP DATABASE IF EXISTS currency_test;
-DROP DATABASE IF EXISTS currency;
+DROP DATABASE IF EXISTS dbExchange_test;
 
-CREATE DATABASE currency_test;
-CREATE DATABASE currency;
+
+DROP DATABASE IF EXISTS dbExchange;
+
+
+CREATE DATABASE dbExchange_test;
+
+
+CREATE DATABASE dbExchange;

@@ -1,6 +1,6 @@
 const { DATABASE_URL } = process.env;
 
-const ENV = (process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0" || "development");
+const ENV = process.env.NODE_ENV || "development";
 
 console.log(`Currently running in ${ENV} environment`);
 
@@ -31,10 +31,9 @@ const customConfig = {
   },
   production: {
     connection: `${DATABASE_URL}?ssl=true`,
-    ssl: {
-      rejectUnauthorized: false,
-    },
   },
 };
 
 module.exports = { ...customConfig[ENV], ...baseConfig };
+
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"

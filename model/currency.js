@@ -5,8 +5,8 @@ exports.fetchAllTransaction = ({
   order = "desc",
 }) => {
   return connection
-    .select("currency.*")
-    .from("currency")
+    .select("*")
+    .from("tblCurrency")
     .orderBy(sort_by, order)
     .returning("*")
     .then((transactions) => {
@@ -16,7 +16,7 @@ exports.fetchAllTransaction = ({
 
 exports.addTransaction = (transaction) => {
   return connection
-    .from("currency")
+    .from("tblCurrency")
     .insert(transaction)
     .returning("*")
     .then((transaction) => {
