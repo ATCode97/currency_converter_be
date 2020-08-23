@@ -17,14 +17,14 @@ const baseConfig = {
 const customConfig = {
   development: {
     connection: {
-      database: "currency",
+      database: "dbExchange",
       // user,
       // password
     },
   },
   test: {
     connection: {
-      database: "currency_test",
+      database: "dbExchange_test",
       // user,
       // password
     },
