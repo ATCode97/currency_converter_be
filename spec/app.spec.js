@@ -31,11 +31,11 @@ describe("/api", () => {
       return Promise.all(promiseArray);
     });
   });
-  describe("/currencyhistory", () => {
+  describe("/exchangehistory", () => {
     describe("GET methods", () => {
       it("status 200", () => {
         return request(app)
-          .get("/api/currencyhistory")
+          .get("/api/exchangehistory")
           .expect(200)
           .then(({ body: { transaction } }) => {
             expect(transaction[0]).to.be.an("object");
@@ -44,7 +44,7 @@ describe("/api", () => {
       });
       it("status 200: can sort queries by exchanged_at in descending order by default", () => {
         return request(app)
-          .get("/api/currencyhistory?sort_by=exchanged_at")
+          .get("/api/exchangehistory?sort_by=exchanged_at")
           .expect(200)
           .then(({ body: { transaction } }) => {
             expect(transaction).to.be.descendingBy("exchanged_at");
@@ -52,7 +52,7 @@ describe("/api", () => {
       });
       it("status 200: can sort queries by in an ascending order", () => {
         return request(app)
-          .get("/api/currencyhistory?order=asc")
+          .get("/api/exchangehistory?order=asc")
           .expect(200)
           .then(({ body: { transaction } }) => {
             expect(transaction).to.be.ascendingBy("exchanged_at");
@@ -60,7 +60,7 @@ describe("/api", () => {
       });
       it("status 400: return an error message if met with an invalid sort_by request", () => {
         return request(app)
-          .get("/api/currencyhistory?sort_by=invalid")
+          .get("/api/exchangehistory?sort_by=invalid")
           .expect(400)
           .then(({ body: { msg } }) => {
             expect(msg).to.equal("bad request");
@@ -70,7 +70,7 @@ describe("/api", () => {
     describe("POST method", () => {
       it("status 201", () => {
         return request(app)
-          .post("/api/currencyhistory")
+          .post("/api/exchangehistory")
           .expect(201)
           .send({
             GBP: 200,
@@ -86,7 +86,7 @@ describe("/api", () => {
       });
       it("status 400: the send body is missing a foreign_currency key", () => {
         return request(app)
-          .post("/api/currencyhistory")
+          .post("/api/exchangehistory")
           .send({
             GBP: 200,
             amount: 237.12,
@@ -98,7 +98,7 @@ describe("/api", () => {
       });
       it("status 422: posting with an invalid datatype", () => {
         return request(app)
-          .post("/api/currencyhistory")
+          .post("/api/exchangehistory")
           .expect(422)
           .send({
             GBP: "two hundred",
@@ -114,7 +114,7 @@ describe("/api", () => {
         const invalidMethods = ["delete", "put", "patch"];
         const promiseArray = invalidMethods.map((method) => {
           return request(app)
-            [method]("/api/currencyhistory")
+            [method]("/api/exchangehistory")
             .expect(405)
             .then(({ body: { msg } }) => {
               expect(msg).to.equal("method not allowed");

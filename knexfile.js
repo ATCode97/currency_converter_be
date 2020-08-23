@@ -17,14 +17,14 @@ const baseConfig = {
 const customConfig = {
   development: {
     connection: {
-      database: "dbExchange",
+      database: "dbexchange",
       // user,
       // password
     },
   },
   test: {
     connection: {
-      database: "dbExchange_test",
+      database: "dbexchange_test",
       // user,
       // password
     },
@@ -35,5 +35,3 @@ const customConfig = {
 };
 
 module.exports = { ...customConfig[ENV], ...baseConfig };
-
-// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"

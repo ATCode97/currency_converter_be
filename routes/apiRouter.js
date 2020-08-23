@@ -5,6 +5,6 @@ const { handle405s } = require("../errors");
 
 apiRouter.route("/").get(getEndPointsInfo).all(handle405s);
 
-apiRouter.use("/currencyhistory", currencyRouter);
+apiRouter.use("/exchangehistory", currencyRouter);
 
 module.exports = apiRouter;

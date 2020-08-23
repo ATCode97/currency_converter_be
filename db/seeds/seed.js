@@ -8,6 +8,6 @@ exports.seed = function (knex) {
     .then(() => knex.migrate.latest())
     .then(() => {
       const formattedCurrency = formatDates(currencyData);
-      return knex.insert(formattedCurrency).into("currency").returning("*");
+      return knex.insert(formattedCurrency).into("tblCurrency").returning("*");
     });
 };

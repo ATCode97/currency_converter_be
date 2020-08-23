@@ -3,7 +3,6 @@ const { fetchAllTransaction, addTransaction } = require("../model/currency");
 exports.getAllTransaction = (req, res, next) => {
   fetchAllTransaction(req.query)
     .then((transaction) => {
-      console.log(transaction);
       res.status(200).send({ transaction });
     })
     .catch(next);

@@ -1,10 +1,10 @@
-DROP DATABASE IF EXISTS dbExchange_test;
+DROP DATABASE IF EXISTS dbexchange_test;
 
 
-DROP DATABASE IF EXISTS dbExchange;
+DROP DATABASE IF EXISTS dbexchange;
 
 
-CREATE DATABASE dbExchange_test;
+CREATE DATABASE dbexchange_test;
 
 
-CREATE DATABASE dbExchange;
+CREATE DATABASE dbexchange;
