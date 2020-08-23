@@ -2,7 +2,7 @@
   "GET /api": {
     "description": "serves up a json representation of all the available endpoints of the api"
   },
-  "GET /api/currencyhistory": {
+  "GET /api/exchangehistory": {
     "description": "serves an array of all topics",
     "queries": ["sort_by", "order"],
     "exampleResponse": {
@@ -17,7 +17,7 @@
       ]
     }
   },
-  "POST /api/currencyhistory": {
+  "POST /api/exchangehistory": {
     "description": "serves an array of all topics",
     "examplePost": {
       "transaction_id": [
